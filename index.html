@@ -835,6 +835,7 @@ footer{background:#070707;border-top:1px solid rgba(255,255,255,.07);padding:66p
         <span class="tag"><i>✓</i>Processo criminal</span>
         <span class="tag"><i>✓</i>Audiência de custódia</span>
         <span class="tag"><i>✓</i>Medidas cautelares</span>
+        <span class="tag"><i>✓</i>Acompanhamento de processo criminal</span>
         <span class="tag"><i>✓</i>Defesa e acompanhamento jurídico</span>
       </div>
 
@@ -855,7 +856,7 @@ footer{background:#070707;border-top:1px solid rgba(255,255,255,.07);padding:66p
       <!-- Retrato do advogado (visível a partir de 1000px) -->
       <figure class="hero-retrato">
         <span class="img" role="img" aria-label="Retrato profissional do advogado David"></span>
-        <figcaption>David · Advogado criminalista</figcaption>
+        <figcaption>David Washington · Advogado criminalista</figcaption>
       </figure>
     </div>
   </div>
@@ -1053,6 +1054,7 @@ footer{background:#070707;border-top:1px solid rgba(255,255,255,.07);padding:66p
           <li>Inquérito policial</li>
           <li>Audiência de custódia</li>
           <li>Processo criminal</li>
+          <li>Acompanhamento de processo criminal</li>
           <li>Medidas cautelares</li>
           <li>Defesa e acompanhamento</li>
         </ul>
@@ -1104,20 +1106,22 @@ footer{background:#070707;border-top:1px solid rgba(255,255,255,.07);padding:66p
    ============================================================ */
 const CONTATOS = [
   {
-    nome:'Daniele',  papel:'Advogada — Direito Criminal', ini:'D',
+    nome:'Daniele',  completo:'Daniele Santos',
+    papel:'Advogada — Direito Criminal', ini:'D',
     wa:'5571993251193', exibe:'(71) 99325-1193',
     oab:'',                       /* ex.: 'OAB/BA 000.000' — deixe vazio para não exibir */
     foto:'var(--foto-daniele-retrato)',
     bio:'Advogada dedicada à área criminal, com atuação na orientação jurídica desde os primeiros atos da persecução penal até o acompanhamento do processo. Atendimento reservado e conduzido diretamente com o cliente.',
-    atua:['Inquérito policial','Audiência de custódia','Processo criminal']
+    atua:['Inquérito policial','Audiência de custódia','Processo criminal','Acompanhamento de processo criminal']
   },
   {
-    nome:'David',    papel:'Advogado — Direito Criminal', ini:'D',
+    nome:'David',    completo:'David Washington',
+    papel:'Advogado — Direito Criminal', ini:'D',
     wa:'5571981547702', exibe:'(71) 98154-7702',
     oab:'',
     foto:'var(--foto-david-retrato)',
     bio:'Advogado dedicado à área criminal, com atuação em prisões em flagrante, inquéritos policiais e processos criminais. Conduz o caso pessoalmente, com análise técnica dos autos e acompanhamento em cada etapa.',
-    atua:['Prisão em flagrante','Medidas cautelares','Defesa e acompanhamento']
+    atua:['Prisão em flagrante','Medidas cautelares','Processo criminal','Acompanhamento de processo criminal']
   }
 ];
 const MENSAGEM = 'Olá, gostaria de orientação jurídica sobre uma situação criminal.';
@@ -1128,7 +1132,7 @@ document.getElementById('listaAdvogados').innerHTML = CONTATOS.map(c => `
   <a class="adv" target="_blank" rel="noopener"
      href="https://wa.me/${c.wa}?text=${encodeURIComponent(MENSAGEM)}">
     <span class="ini" aria-hidden="true">${c.ini}</span>
-    <span class="info"><b>${c.nome}</b><span>${c.papel}</span><span class="tel">${c.exibe}</span></span>
+    <span class="info"><b>${c.completo || c.nome}</b><span>${c.papel}</span><span class="tel">${c.exibe}</span></span>
     ${seta}
   </a>`).join('');
 
@@ -1138,7 +1142,7 @@ document.getElementById('rodapeContatos').innerHTML = CONTATOS.map(c => `
   <li><a class="rodape-zap" target="_blank" rel="noopener"
      href="https://wa.me/${c.wa}?text=${encodeURIComponent(MENSAGEM)}">
     ${iconeZap}
-    <span><b>${c.nome}</b><span>${c.exibe}</span></span>
+    <span><b>${c.completo || c.nome}</b><span>${c.exibe}</span></span>
   </a></li>`).join('');
 
 
@@ -1153,7 +1157,7 @@ if(socios){
         : `<div class="socio-foto vazia"><span class="socio-mono" aria-hidden="true">${c.ini}</span></div>`}
       <div class="socio-txt">
         <p class="socio-papel">${c.papel}</p>
-        <h3>${c.nome}</h3>
+        <h3>${c.completo || c.nome}</h3>
         ${c.oab ? `<p class="socio-oab">${c.oab}</p>` : ''}
         <p class="socio-bio">${c.bio}</p>
         <ul class="socio-lista">${(c.atua||[]).map(a => `<li>${a}</li>`).join('')}</ul>
