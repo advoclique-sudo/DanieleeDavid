@@ -1232,6 +1232,19 @@ if('IntersectionObserver' in window){
 
 /* ---------- Ano no rodapé ---------- */
 document.getElementById('ano').textContent = new Date().getFullYear();
+
+/* ---------- Google Ads - conversao de Contato no clique do WhatsApp (AW-18416985167) ---------- */
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a[href*="wa.me"]');
+  if (link && typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18416985167/uI_RCJzctuscEM_I881E',
+      'value': 1.0,
+      'currency': 'BRL',
+      'transport_type': 'beacon'
+    });
+  }
+});
 </script>
 </body>
 </html>
